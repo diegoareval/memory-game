@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./game.css";
 import { randomSort, valuesImages } from "../helpers";
 import Card from "./card";
+import Header from "../layout/header";
 
 const Board = () => {
   let val = valuesImages.concat(valuesImages).sort(randomSort);
@@ -52,7 +53,8 @@ const Board = () => {
   ));
 
   return (
-    <>
+    <Header>
+      <div className="board-container">
       <h1>Game</h1>
       <div className="Board">{cardsElements}</div>
       <p>
@@ -66,7 +68,8 @@ const Board = () => {
           Restart
         </button>
       </p>
-    </>
+      </div>
+    </Header>
   );
 };
 
