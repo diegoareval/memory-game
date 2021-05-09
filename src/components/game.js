@@ -1,24 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import "./game.css";
 import { randomSort, valuesImages } from "../helpers";
 import Card from "./card";
 
-export default class Board extends React.Component {
-  constructor(props) {
-    super(props);
-    let val = valuesImages.concat(valuesImages).sort(randomSort);
-    this.state = {
-      cards: [...Array(16).keys()].map((n) => false),
-      values: val,
-      selected: [],
-      hits: 0,
-    };
-  }
+const Board = () => {
+  let val = valuesImages.concat(valuesImages).sort(randomSort);
+  const [cards, setCards] = useState([...Array(16).keys()].map((n) => false));
+  const [values] = useState(val);
+  const [selected, setSelected] = useState([]);
+  const [hits, setHits] = useState(0);
 
-  clickHandler(key) {
-    let newCards = [...this.state.cards];
-    let newSelected = [...this.state.selected];
-    let newHits = this.state.hits;
+  const clickHandler = (key) => {
+    let newCards = [...cards];
+    let newSelected = [...selected];
+    let newHits = hits;
     if (newSelected.length > 1) {
       newHits++;
       newCards[newSelected[0]] = false;
@@ -29,28 +24,31 @@ export default class Board extends React.Component {
     newSelected.push(key);
     if (
       newSelected.length > 1 &&
-      this.state.values[newSelected[0]] == this.state.values[newSelected[1]]
+      values[newSelected[0]] === values[newSelected[1]]
     ) {
       newSelected = [];
     }
-    this.setState({ cards: newCards, selected: newSelected, hits: newHits });
-  }
+    setCards(newCards);
+    setSelected(newSelected);
+    setHits(newHits);
+  };
 
-  render() {
-    const cards = [...Array(this.state.cards.length).keys()].map((n) => (
-      <Card
-        key={n}
-        value={this.state.values[n]}
-        active={this.state.cards[n]}
-        clicked={() => this.clickHandler(n)}
-      />
-    ));
-    return (
-      <>
-        <h1>Memory Game</h1>
-        <div className="Board">{cards}</div>
-        <p>Hits: {this.state.hits}</p>
-      </>
-    );
-  }
-}
+  const cardsElements = [...Array(cards.length).keys()].map((n) => (
+    <Card
+      key={n}
+      value={values[n]}
+      active={cards[n]}
+      clicked={() => clickHandler(n)}
+    />
+  ));
+
+  return (
+    <>
+      <h1>Game</h1>
+      <div className="Board">{cardsElements}</div>
+      <p>Hits: {hits}</p>
+    </>
+  );
+};
+
+export default Board;
