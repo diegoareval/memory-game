@@ -9,8 +9,10 @@ const Board = () => {
   const [values] = useState(val);
   const [selected, setSelected] = useState([]);
   const [hits, setHits] = useState(0);
+  const [triesNumber, setTryNumber] = useState(11);
 
   const clickHandler = (key) => {
+    if(triesNumber<=0) return;
     let newCards = [...cards];
     let newSelected = [...selected];
     let newHits = hits;
@@ -18,6 +20,7 @@ const Board = () => {
       newCards[newSelected[0]] = false;
       newCards[newSelected[1]] = false;
       newSelected = [];
+      setTryNumber(triesNumber - 1);
     }
     newCards[key] = true;
     newSelected.push(key);
@@ -34,10 +37,10 @@ const Board = () => {
   };
 
   const restart = () => {
-    setCards([...Array(16).keys()].map((n) => false))
+    setCards([...Array(16).keys()].map((n) => false));
     setSelected([]);
-    setHits(0)
-  }
+    setHits(0);
+  };
 
   const cardsElements = [...Array(cards.length).keys()].map((n) => (
     <Card
@@ -52,11 +55,17 @@ const Board = () => {
     <>
       <h1>Game</h1>
       <div className="Board">{cardsElements}</div>
-      <p>Hits: {hits}</p>
+      <p>
+        Hits: {hits} <br />
+        Try number: {triesNumber}
+      </p>
+      {triesNumber === 0 && <p>Try Again, click on restart.</p>}
       {hits === 8 && <p>Congratulations.</p>}
-      <p><button className="my-btn" onClick={()=> restart()}>
-        Restart
-      </button></p>
+      <p>
+        <button className="my-btn" onClick={() => restart()}>
+          Restart
+        </button>
+      </p>
     </>
   );
 };
