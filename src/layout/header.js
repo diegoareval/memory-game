@@ -1,6 +1,8 @@
 import React from "react";
-import "./header.css"
-const Header = ({children}) => {
+import { Link } from "react-router-dom";
+
+import "./header.css";
+const Header = ({ children }) => {
   return (
     <header>
       <div className="navWrapper" id="home">
@@ -9,12 +11,12 @@ const Header = ({children}) => {
           <nav className="mainNav clearfix">
             <ul>
               <li>
-                <a href="#home">Sudoku</a>
+                <Link to="/sudoku">Sudoku</Link>
               </li>
               <li>
-                <a href="#work" className="smoothScroll">
-                  Matches 
-                </a>
+                <Link to="/matches" className="smoothScroll">
+                  Matches
+                </Link>
               </li>
               <li>
                 <a href="#about" className="smoothScroll">
@@ -32,9 +34,7 @@ const Header = ({children}) => {
       </div>
 
       <section className="hero">
-        <div className="innerWrapper">
-          {children}
-        </div>
+        <div className="innerWrapper">{children}</div>
       </section>
     </header>
   );
