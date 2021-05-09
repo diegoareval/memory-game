@@ -15,7 +15,6 @@ const Board = () => {
     let newSelected = [...selected];
     let newHits = hits;
     if (newSelected.length > 1) {
-      newHits++;
       newCards[newSelected[0]] = false;
       newCards[newSelected[1]] = false;
       newSelected = [];
@@ -26,12 +25,19 @@ const Board = () => {
       newSelected.length > 1 &&
       values[newSelected[0]] === values[newSelected[1]]
     ) {
+      newHits++;
       newSelected = [];
     }
     setCards(newCards);
     setSelected(newSelected);
     setHits(newHits);
   };
+
+  const restart = () => {
+    setCards([...Array(16).keys()].map((n) => false))
+    setSelected([]);
+    setHits(0)
+  }
 
   const cardsElements = [...Array(cards.length).keys()].map((n) => (
     <Card
@@ -47,6 +53,10 @@ const Board = () => {
       <h1>Game</h1>
       <div className="Board">{cardsElements}</div>
       <p>Hits: {hits}</p>
+      {hits === 8 && <p>Congratulations.</p>}
+      <p><button className="my-btn" onClick={()=> restart()}>
+        Restart
+      </button></p>
     </>
   );
 };
