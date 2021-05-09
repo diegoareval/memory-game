@@ -1,4 +1,4 @@
-const Card = ({active, clicked, value}) => {
+const Card = ({ active, clicked, value }) => {
   let Cardclasses = ["Card"];
   let contentClasses = ["iconify"];
 

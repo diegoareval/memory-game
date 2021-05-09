@@ -1,10 +1,7 @@
-
-import Board from './components/game';
+import Board from "./components/game";
 
 function App() {
-  return (
-    <Board/>
-  );
+  return <Board />;
 }
 
 export default App;

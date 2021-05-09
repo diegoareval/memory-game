@@ -12,7 +12,7 @@ const Board = () => {
   const [triesNumber, setTryNumber] = useState(11);
 
   const clickHandler = (key) => {
-    if(triesNumber<=0) return;
+    if (triesNumber <= 0) return;
     let newCards = [...cards];
     let newSelected = [...selected];
     let newHits = hits;
