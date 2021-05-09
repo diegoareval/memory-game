@@ -62,7 +62,7 @@ const Board = () => {
       {triesNumber === 0 && <p>Try Again, click on restart.</p>}
       {hits === 8 && <p>Congratulations.</p>}
       <p>
-        <button className="my-btn" onClick={() => restart()}>
+        <button className="btn btn-success" onClick={() => restart()}>
           Restart
         </button>
       </p>
