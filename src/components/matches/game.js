@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./game.css";
-import { randomSort, valuesImages } from "../helpers";
+import { randomSort, valuesImages } from "../../helpers";
 import Card from "./card";
-import Header from "../layout/header";
+import Button from "../shared/button";
 
 const Board = () => {
   let val = valuesImages.concat(valuesImages).sort(randomSort);
@@ -53,7 +53,6 @@ const Board = () => {
   ));
 
   return (
-    <Header>
       <div className="board-container">
       <h1>Game</h1>
       <div className="Board">{cardsElements}</div>
@@ -64,12 +63,9 @@ const Board = () => {
       {triesNumber === 0 && <p>Try Again, click on restart.</p>}
       {hits === 8 && <p>Congratulations.</p>}
       <p>
-        <button className="my-btn" onClick={() => restart()}>
-          Restart
-        </button>
+        <Button title="Restart" action={restart}/>
       </p>
       </div>
-    </Header>
   );
 };
 

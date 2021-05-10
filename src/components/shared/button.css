@@ -1,0 +1,11 @@
+.my-btn{
+    color: white;
+    background-color: green;
+    width: auto;
+    height: auto;
+    border: none;
+  }
+  
+  .my-btn:hover{
+    border: 1px solid white;
+  }

@@ -24,9 +24,9 @@ const Header = ({ children }) => {
                 </a>
               </li>
               <li>
-                <a href="#about" className="smoothScroll">
+                <Link to="/about" className="smoothScroll">
                   About
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
